@@ -104,7 +104,7 @@ def generate_comments(db: Database) -> None:
     db.insert_many('comments', comments_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(comments_data)} comments")
+    logger.info(f"[OK] Generated {len(comments_data)} comments")
 
 
 def generate_comment_text() -> str:
@@ -230,8 +230,8 @@ def generate_custom_fields(db: Database) -> None:
     db.insert_many('custom_field_values', field_values)
     db.commit()
     
-    logger.info(f"✓ Generated {len(field_definitions)} custom field definitions")
-    logger.info(f"✓ Generated {len(field_values)} custom field values")
+    logger.info(f"[OK] Generated {len(field_definitions)} custom field definitions")
+    logger.info(f"[OK] Generated {len(field_values)} custom field values")
 
 
 def generate_tags(db: Database, organization_id: str) -> None:
@@ -262,7 +262,7 @@ def generate_tags(db: Database, organization_id: str) -> None:
     db.insert_many('tags', tags_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(tags_data)} tags")
+    logger.info(f"[OK] Generated {len(tags_data)} tags")
     
     # Assign tags to tasks
     logger.info("Assigning tags to tasks...")
@@ -301,7 +301,7 @@ def generate_tags(db: Database, organization_id: str) -> None:
     db.insert_many('task_tags', task_tags_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(task_tags_data)} task-tag associations")
+    logger.info(f"[OK] Generated {len(task_tags_data)} task-tag associations")
 
 
 def generate_attachments(db: Database) -> None:
@@ -377,4 +377,4 @@ def generate_attachments(db: Database) -> None:
     db.insert_many('attachments', attachments_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(attachments_data)} attachments")
+    logger.info(f"[OK] Generated {len(attachments_data)} attachments")
