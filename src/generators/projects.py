@@ -133,7 +133,7 @@ def generate_projects(db: Database) -> list[dict]:
     db.insert_many('projects', projects_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(projects_data)} projects")
+    logger.info(f"[OK] Generated {len(projects_data)} projects")
     
     return project_metadata
 
@@ -175,4 +175,4 @@ def generate_sections(db: Database, project_metadata: list[dict]) -> None:
     db.insert_many('sections', sections_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(sections_data)} sections")
+    logger.info(f"[OK] Generated {len(sections_data)} sections")
