@@ -29,15 +29,15 @@ The simulation creates a complete, realistic Asana workspace with:
 
 ## Prerequisites
 
-- Python 3.8+
+- Python 3.10+
 - SQLite3
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
-cd <repo-name>
+git clone https://github.com/sdmadhav/scalerAI
+cd scalerAI
 ```
 
 2. Install dependencies:
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 1. **Generate Organizations and Users** (already done in your case):
 ```bash
-# Your organizations and users are already in the database
+# Organizations and users are already in the database. Organisation are taken from Kaggle dataset. User are generated using indigen Library. 
 ```
 
 2. **Generate Complete Simulation**:
@@ -258,7 +258,7 @@ DUE_DATE_DISTRIBUTION = {
 
 ## Credits
 
-- **Y Combinator Company Data**: Kaggle dataset by Miguel Corral Jr
+- (**Y Combinator Company Data**: Kaggle dataset by Miguel Corral Jr) [https://www.kaggle.com/datasets/miguelcorraljr/y-combinator-directory/data]
 - **Name Generation**:  Indigen library
 - **Inspiration**: Asana's public templates and documentation
 
@@ -266,6 +266,7 @@ DUE_DATE_DISTRIBUTION = {
 ## Contact
 
 Mail  - sdmadhav13@gmail.com
+
 
 
    
