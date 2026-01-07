@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 # Configuration
 DB_PATH = "output/asana_simulation.sqlite"
 ORGANIZATIONS_CSV = "src/data/2023-02-27-yc-companies.csv"
-USERS_CSV = "output/doordash_users.csv"
+USERS_CSV = "src/data/doordash_users.csv"
 
 
 def extract_domain(url):
