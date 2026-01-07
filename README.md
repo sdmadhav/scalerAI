@@ -56,7 +56,7 @@ pip install -r requirements.txt
 
 2. **Generate Complete Simulation**:
 ```bash
-python src/main.py
+python3 -m src.main
 ```
 
 This will:
@@ -273,4 +273,5 @@ Mail  - sdmadhav13@gmail.com
 
 
    
+
 
