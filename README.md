@@ -72,6 +72,9 @@ The script generates:
 - **Database**: `output/asana_simulation.sqlite`
 - **Logs**: `generation.log`
 
+### Schema
+<img width="2802" height="1058" alt="Asana ER diagram" src="https://github.com/user-attachments/assets/5014a5e4-ebe6-485e-abce-270b58e865be" />
+
 ### Configuration
 
 Edit `src/config.py` to adjust:
@@ -270,3 +273,4 @@ Mail  - sdmadhav13@gmail.com
 
 
    
+
