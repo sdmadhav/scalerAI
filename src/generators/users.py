@@ -160,7 +160,7 @@ def generate_names(state, num_names, name_type="full", seed_value=42):
             print(f"⚠️ Unexpected return type for {state}: {type(names_df)}")
             return []
     except Exception as e:
-        print(f"❌ Error generating names for {state}: {e}")
+        print(f"[ERROR] Error generating names for {state}: {e}")
         return []
 
 # -------------------------------------------------
@@ -204,7 +204,7 @@ with open(CSV_PATH, "w", newline="", encoding="utf-8") as csvfile:
             print(f"⚠️ Warning: {e}")
             continue
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"[ERROR] Error: {e}")
             continue
 
         for name in names:
