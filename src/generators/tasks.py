@@ -167,7 +167,7 @@ def generate_tasks(db: Database, project_metadata: list[dict]) -> None:
         db.insert_many('tasks', tasks_data)
         db.commit()
     
-    logger.info(f"✓ Generated {total_tasks} tasks")
+    logger.info(f"[OK] Generated {total_tasks} tasks")
 
 
 def generate_task_description() -> str:
@@ -308,4 +308,4 @@ def generate_subtasks(db: Database) -> None:
     db.insert_many('tasks', subtasks_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(subtasks_data)} subtasks")
+    logger.info(f"[OK] Generated {len(subtasks_data)} subtasks")
