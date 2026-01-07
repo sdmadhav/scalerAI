@@ -52,7 +52,7 @@ def load_organizations():
     logger.info("\n[Step 1a] Loading organizations from CSV...")
     
     if not Path(ORGANIZATIONS_CSV).exists():
-        logger.error(f"❌ Organizations CSV not found: {ORGANIZATIONS_CSV}")
+        logger.error(f"[ERROR] Organizations CSV not found: {ORGANIZATIONS_CSV}")
         sys.exit(1)
     
     conn = sqlite3.connect(DB_PATH)
@@ -103,7 +103,7 @@ def load_organizations():
     org_count = cursor.execute("SELECT COUNT(*) FROM organizations").fetchone()[0]
     conn.close()
     
-    logger.info(f"✓ Loaded {org_count} organizations from CSV")
+    logger.info(f"[OK] Loaded {org_count} organizations from CSV")
     return org_count
 
 
@@ -112,7 +112,7 @@ def load_users():
     logger.info("\n[Step 1b] Loading users from CSV...")
     
     if not Path(USERS_CSV).exists():
-        logger.error(f"❌ Users CSV not found: {USERS_CSV}")
+        logger.error(f"[ERROR] Users CSV not found: {USERS_CSV}")
         sys.exit(1)
     
     # Load CSV
@@ -149,7 +149,7 @@ def load_users():
     user_count = cursor.execute("SELECT COUNT(*) FROM users").fetchone()[0]
     conn.close()
     
-    logger.info(f"✓ Loaded {user_count} users from CSV")
+    logger.info(f"[OK] Loaded {user_count} users from CSV")
     return user_count
 
 
@@ -173,7 +173,7 @@ def main():
         # Step 1: Create database and schema
         logger.info("\n[1/11] Creating database and schema...")
         db = create_database(config.DATABASE_PATH, config.SCHEMA_PATH)
-        logger.info("✓ Database created successfully")
+        logger.info("[OK] Database created successfully")
         db.close()  # Close the connection before loading data
         
         # Step 1a: Load organizations
@@ -190,17 +190,17 @@ def main():
         cursor = db.connection.cursor()
         
         if org_count == 0:
-            logger.error("❌ No organizations found!")
+            logger.error("[ERROR] No organizations found!")
             return
         
         if user_count == 0:
-            logger.error("❌ No users found!")
+            logger.error("[ERROR] No users found!")
             return
         
         # Get the first organization
         org_id = cursor.execute("SELECT organization_id FROM organizations LIMIT 1").fetchone()[0]
-        logger.info(f"✓ Found {org_count} organizations and {user_count} users")
-        logger.info(f"✓ Using organization: {org_id}")
+        logger.info(f"[OK] Found {org_count} organizations and {user_count} users")
+        logger.info(f"[OK] Using organization: {org_id}")
         
         # Step 3: Generate teams
         logger.info("\n[3/11] Generating teams...")
@@ -245,7 +245,7 @@ def main():
         duration = (end_time - start_time).total_seconds()
         
         logger.info("\n" + "="*60)
-        logger.info("✓ GENERATION COMPLETE!")
+        logger.info("[OK] GENERATION COMPLETE!")
         logger.info("="*60)
         logger.info(f"Database: {config.DATABASE_PATH}")
         logger.info(f"Duration: {duration:.1f} seconds")
@@ -253,7 +253,7 @@ def main():
         logger.info("="*60)
         
     except Exception as e:
-        logger.error(f"\n❌ Error during generation: {e}", exc_info=True)
+        logger.error(f"\n[ERROR] Error during generation: {e}", exc_info=True)
         sys.exit(1)
 
 
@@ -292,7 +292,7 @@ def validate_database(db):
     """).fetchone()[0]
     
     if invalid_dates == 0:
-        logger.info("  ✓ All completion dates are valid")
+        logger.info("  [OK] All completion dates are valid")
     else:
         logger.warning(f"  ⚠ Found {invalid_dates} tasks with invalid completion dates")
     
@@ -304,7 +304,7 @@ def validate_database(db):
     """).fetchone()[0]
     
     if orphaned == 0:
-        logger.info("  ✓ No orphaned subtasks")
+        logger.info("  [OK] No orphaned subtasks")
     else:
         logger.warning(f"  ⚠ Found {orphaned} orphaned subtasks")
     
@@ -313,15 +313,15 @@ def validate_database(db):
     unassigned = cursor.execute("SELECT COUNT(*) FROM tasks WHERE parent_task_id IS NULL AND assignee_id IS NULL").fetchone()[0]
     unassigned_rate = unassigned / total_tasks if total_tasks > 0 else 0
     
-    logger.info(f"  ✓ Unassigned task rate: {unassigned_rate:.1%} (target: {config.UNASSIGNED_TASK_RATE:.1%})")
+    logger.info(f"  [OK] Unassigned task rate: {unassigned_rate:.1%} (target: {config.UNASSIGNED_TASK_RATE:.1%})")
     
     # Check completion rate
     completed = cursor.execute("SELECT COUNT(*) FROM tasks WHERE completed = 1 AND parent_task_id IS NULL").fetchone()[0]
     completion_rate = completed / total_tasks if total_tasks > 0 else 0
     
-    logger.info(f"  ✓ Overall completion rate: {completion_rate:.1%}")
+    logger.info(f"  [OK] Overall completion rate: {completion_rate:.1%}")
     
-    logger.info("\n✓ Validation complete")
+    logger.info("\n[OK] Validation complete")
 
 
 if __name__ == "__main__":
