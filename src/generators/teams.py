@@ -75,7 +75,7 @@ def generate_teams(db: Database, organization_id: str) -> list[str]:
     db.insert_many('teams', teams_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(teams_data)} teams")
+    logger.info(f"[OK] Generated {len(teams_data)} teams")
     return team_ids
 
 
@@ -125,7 +125,7 @@ def generate_team_memberships(db: Database) -> None:
     db.insert_many('team_memberships', memberships_data)
     db.commit()
     
-    logger.info(f"✓ Generated {len(memberships_data)} team memberships")
+    logger.info(f"[OK] Generated {len(memberships_data)} team memberships")
     
     # Log team size distribution
     cursor.execute("""
